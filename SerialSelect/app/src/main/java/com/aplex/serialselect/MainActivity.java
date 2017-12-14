@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,7 +15,7 @@ import com.aplex.serialselect.utils.SPUtils;
 import java.io.File;
 
 public class MainActivity extends Activity  {
-
+    private final String TAG = "MainActivity";
     final int TEST_RS232_CMD_APLEX = 66;
     final int TEST_RS485_CMD_APLEX = 67;
     final int TEST_RS422_CMD_APLEX = 68;
@@ -79,6 +80,7 @@ public class MainActivity extends Activity  {
                         case 6:serialMode.ioctl(serialMode.fd, TEST_LOOPBACK_CMD_APLEX, 0);break;
                         default:break;
                     }
+                    Log.e(TAG, "启动的ioctl");
                 }
 
                 ButtonOnClick buttonOnClick = new ButtonOnClick();
@@ -134,6 +136,7 @@ public class MainActivity extends Activity  {
                     cmd = TEST_RS232_CMD_APLEX;
 
                     serialMode.ioctl(serialMode.fd, TEST_RS232_CMD_APLEX, 0);
+                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS232_CMD_APLEX+")");
                     SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonRS485:
@@ -141,6 +144,7 @@ public class MainActivity extends Activity  {
                     Prompt = "ButtonRS485";
                     cmd = TEST_RS485_CMD_APLEX;
                     serialMode.ioctl(serialMode.fd, TEST_RS485_CMD_APLEX , 0);
+                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS485_CMD_APLEX+")");
                     SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonRS422:
@@ -148,29 +152,34 @@ public class MainActivity extends Activity  {
                     Prompt = "ButtonRS422";
                     cmd = TEST_RS485_CMD_APLEX;
                     serialMode.ioctl(serialMode.fd, TEST_RS422_CMD_APLEX , 0);
+                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS422_CMD_APLEX+")");
                     SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonRS485Trml:
                     BtId = 4;
                     Prompt = "ButtonRS485Trml";
                     serialMode.ioctl(serialMode.fd, TEST_RS485_TERM_CMD_APLEX, 0);
+                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS485_TERM_CMD_APLEX+")");
                     SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonRS422Trml:
                     BtId = 5;
                     Prompt = "ButtonRS422Trml";
                     serialMode.ioctl(serialMode.fd, TEST_RS422_TERM_CMD_APLEX, 0);
+                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS422_TERM_CMD_APLEX+")");
                     SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonLoopBack:
                     BtId = 6;
                     Prompt = "ButtonLoopBack";
                     serialMode.ioctl(serialMode.fd, TEST_LOOPBACK_CMD_APLEX, 0);
+                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_LOOPBACK_CMD_APLEX+")");
                     SPUtils.pushInt("serialmode", BtId);
                     break;
                 default:break;
             }
             Toast.makeText(MainActivity.this, Prompt, Toast.LENGTH_SHORT).show();
+            Log.e(TAG, Prompt+"="+BtId);
         }
 
     }

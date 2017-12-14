@@ -67,6 +67,7 @@ JNIEXPORT void JNICALL Java_com_aplex_serialselect_SerialMode_close
  */
 JNIEXPORT jlong JNICALL Java_com_aplex_serialselect_SerialMode_ioctl
   (JNIEnv *env, jobject obj, jint fd, jint cmd, jint value){
+    LOGE("ioctl(%d, %d, %d)\n",fd, cmd, value);
   return ioctl(fd, cmd, value);
 }
 
