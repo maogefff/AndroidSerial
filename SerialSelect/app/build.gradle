@@ -13,6 +13,7 @@ android {
 
         ndk{
             moduleName "serialmode"         //生成的so名字
+            ldLibs "log"
             abiFilters "armeabi", "armeabi-v7a", "x86"  //输出指定三种abi体系结构下的so库。
         }
     }

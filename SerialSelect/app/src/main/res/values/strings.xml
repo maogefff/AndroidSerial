@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">SerialSelect</string>
 
-    <string name="Button1">Button1</string>
-    <string name="Button2">Button2</string>
-    <string name="Button3">Button3</string>
-    <string name="Button4">Button4</string>
-    <string name="Button5">Button5</string>
+    <string name="ButtonRS232">ButtonRS232</string>
+    <string name="ButtonRS485">ButtonRS485</string>
+    <string name="ButtonRS422">ButtonRS422</string>
+    <string name="ButtonRS485Trml">ButtonRS485Trml</string>
+    <string name="ButtonRS422Trml">ButtonRS422Trml</string>
+    <string name="ButtonLoopBack">ButtonLoopBack</string>
+
 </resources>

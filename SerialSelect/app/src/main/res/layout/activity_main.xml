@@ -8,34 +8,41 @@
     tools:context="com.aplex.serialselect.MainActivity">
 
     <Button
-        android:id="@+id/Button1"
+        android:id="@+id/ButtonRS232"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/Button1" />
+        android:text="@string/ButtonRS232" />
 
     <Button
-        android:id="@+id/Button2"
+        android:id="@+id/ButtonRS485"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/Button2" />
+        android:text="@string/ButtonRS485" />
     <Button
-        android:id="@+id/Button3"
+        android:id="@+id/ButtonRS422"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/Button3" />
+        android:text="@string/ButtonRS422" />
     <Button
-        android:id="@+id/ButtonSetup"
+        android:id="@+id/ButtonRS485Trml"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/Button4" />
+        android:text="@string/ButtonRS485Trml" />
     <Button
-        android:id="@+id/Button4"
+        android:id="@+id/ButtonRS422Trml"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/Button5" />
+        android:text="@string/ButtonRS422Trml" />
+
+    <Button
+        android:id="@+id/ButtonLoopBack"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/ButtonLoopBack" />
 </LinearLayout>
