@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aplex.serialselect.R;
@@ -30,11 +31,11 @@ public class MainActivity extends Activity  {
     Button BtRS485Trml;
     Button BtRS422Trml;
     Button BtLoopBack;
+    TextView TV;
 
     int BtId = -1;
     String Prompt;
     int cmd;
-    Integer serialmode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -47,40 +48,22 @@ public class MainActivity extends Activity  {
         BtRS485Trml = (Button)findViewById(R.id.ButtonRS485Trml);
         BtRS422Trml = (Button)findViewById(R.id.ButtonRS422Trml);
         BtLoopBack = (Button)findViewById(R.id.ButtonLoopBack);
-        //SPUtils.testSPUtils(getApplication());
+        TV = (TextView)findViewById(R.id.serialtype);
 
-        //getApplication()
-        //bt.findViewById(R.id.Button1);
-        //bt.setOnClickListener();
-
-//        serialMode.fd = serialMode.open("/dev/com3mode", 0);
-//        if(serialMode.fd <= 0){
-//            Toast.makeText(this, "文件打开失败， fd="+serialMode.fd, Toast.LENGTH_SHORT).show();
-//        }else{
-//            Toast.makeText(this, "文件打开成功", Toast.LENGTH_SHORT).show();
-//        }
         File file = new File("dev/com3mode");
         if (file.exists()) {
             serialMode.fd = serialMode.open("/dev/com3mode", 0);
-            Toast.makeText(this, "文件打开成功", Toast.LENGTH_SHORT).show();
 
             if ( serialMode.fd > 0) {
 
-                serialmode = (Integer)SPUtils.getValue("serialmode", Integer.valueOf(0));
-                if(serialmode==0)
-                    Toast.makeText(this,"没有之前的值", Toast.LENGTH_SHORT).show();
+                BtId = (Integer)SPUtils.getValue("serialmode", Integer.valueOf(0));
+                Prompt = (String)SPUtils.getValue("serialstring", new String());
+                if(BtId==0){
+                    Log.v(TAG, "no serialmode");
+                }
                 else{
-                    Toast.makeText(this,"之前保存的值为："+serialmode, Toast.LENGTH_SHORT).show();
-                    switch (serialmode){
-                        case 1:serialMode.ioctl(serialMode.fd, TEST_RS232_CMD_APLEX, 0);break;
-                        case 2:serialMode.ioctl(serialMode.fd, TEST_RS485_CMD_APLEX , 0);break;
-                        case 3:serialMode.ioctl(serialMode.fd, TEST_RS422_CMD_APLEX , 0);break;
-                        case 4:serialMode.ioctl(serialMode.fd, TEST_RS485_TERM_CMD_APLEX, 0);break;
-                        case 5:serialMode.ioctl(serialMode.fd, TEST_RS422_TERM_CMD_APLEX, 0);break;
-                        case 6:serialMode.ioctl(serialMode.fd, TEST_LOOPBACK_CMD_APLEX, 0);break;
-                        default:break;
-                    }
-                    Log.e(TAG, "启动的ioctl");
+                    Log.v(TAG, "serialmode="+BtId);
+                    TV.setText(Prompt);
                 }
 
                 ButtonOnClick buttonOnClick = new ButtonOnClick();
@@ -132,54 +115,50 @@ public class MainActivity extends Activity  {
             switch (v.getId()){
                 case R.id.ButtonRS232:
                     BtId = 1;
-                    Prompt = "ButtonRS232";
+                    Prompt = "RS232";
                     cmd = TEST_RS232_CMD_APLEX;
-
                     serialMode.ioctl(serialMode.fd, TEST_RS232_CMD_APLEX, 0);
-                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS232_CMD_APLEX+")");
-                    SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonRS485:
                     BtId = 2;
-                    Prompt = "ButtonRS485";
+                    Prompt = "RS485";
                     cmd = TEST_RS485_CMD_APLEX;
                     serialMode.ioctl(serialMode.fd, TEST_RS485_CMD_APLEX , 0);
-                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS485_CMD_APLEX+")");
-                    SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonRS422:
                     BtId = 3;
-                    Prompt = "ButtonRS422";
+                    Prompt = "RS422";
                     cmd = TEST_RS485_CMD_APLEX;
                     serialMode.ioctl(serialMode.fd, TEST_RS422_CMD_APLEX , 0);
-                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS422_CMD_APLEX+")");
-                    SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonRS485Trml:
                     BtId = 4;
-                    Prompt = "ButtonRS485Trml";
+                    Prompt = "RS485 Terminal";
+                    cmd = TEST_RS485_TERM_CMD_APLEX;
                     serialMode.ioctl(serialMode.fd, TEST_RS485_TERM_CMD_APLEX, 0);
-                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS485_TERM_CMD_APLEX+")");
-                    SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonRS422Trml:
                     BtId = 5;
-                    Prompt = "ButtonRS422Trml";
+                    Prompt = "RS422 Terminal";
+                    cmd = TEST_RS422_TERM_CMD_APLEX;
                     serialMode.ioctl(serialMode.fd, TEST_RS422_TERM_CMD_APLEX, 0);
-                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_RS422_TERM_CMD_APLEX+")");
-                    SPUtils.pushInt("serialmode", BtId);
                     break;
                 case R.id.ButtonLoopBack:
                     BtId = 6;
-                    Prompt = "ButtonLoopBack";
+                    Prompt = "LoopBack";
                     serialMode.ioctl(serialMode.fd, TEST_LOOPBACK_CMD_APLEX, 0);
-                    Log.e(TAG, "ioctl("+serialMode.fd+" , "+TEST_LOOPBACK_CMD_APLEX+")");
-                    SPUtils.pushInt("serialmode", BtId);
+                    cmd = TEST_LOOPBACK_CMD_APLEX;
                     break;
-                default:break;
+                default:BtId = 0;
+                         Prompt = null;
+                         cmd = 0;
+                    break;
             }
-            Toast.makeText(MainActivity.this, Prompt, Toast.LENGTH_SHORT).show();
-            Log.e(TAG, Prompt+"="+BtId);
+            SPUtils.pushInt("serialmode", BtId);
+            SPUtils.pushString("serialstring", Prompt);
+            TV.setText(Prompt);
+            Log.v(TAG, "ioctl("+serialMode.fd+" , "+cmd+")");
+            Log.v(TAG, Prompt+"="+BtId);
         }
 
     }

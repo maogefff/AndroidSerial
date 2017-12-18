@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">SerialSelect</string>
 
-    <string name="ButtonRS232">ButtonRS232</string>
-    <string name="ButtonRS485">ButtonRS485</string>
-    <string name="ButtonRS422">ButtonRS422</string>
-    <string name="ButtonRS485Trml">ButtonRS485Trml</string>
-    <string name="ButtonRS422Trml">ButtonRS422Trml</string>
-    <string name="ButtonLoopBack">ButtonLoopBack</string>
+    <string name="ButtonRS232">RS232</string>
+    <string name="ButtonRS485">RS485</string>
+    <string name="ButtonRS422">RS422</string>
+    <string name="ButtonRS485Trml">RS485 Terminal</string>
+    <string name="ButtonRS422Trml">RS422Trml Terminal</string>
+    <string name="ButtonLoopBack">LoopBack</string>
 
+    <string name="SelectType">"请选择当前COM类型"</string>
+    <string name="SelectPorp">"COM类型："</string>
 </resources>

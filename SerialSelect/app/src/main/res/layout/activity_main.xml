@@ -7,42 +7,114 @@
     android:orientation="vertical"
     tools:context="com.aplex.serialselect.MainActivity">
 
-    <Button
-        android:id="@+id/ButtonRS232"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/ButtonRS232" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:src="@drawable/aplex_logo"/>
 
-    <Button
-        android:id="@+id/ButtonRS485"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/ButtonRS485" />
-    <Button
-        android:id="@+id/ButtonRS422"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/ButtonRS422" />
-    <Button
-        android:id="@+id/ButtonRS485Trml"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/ButtonRS485Trml" />
-    <Button
-        android:id="@+id/ButtonRS422Trml"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/ButtonRS422Trml" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorList"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
 
-    <Button
-        android:id="@+id/ButtonLoopBack"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/ButtonLoopBack" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:text="@string/SelectPorp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:id="@+id/serialtype"
+            android:hint="@string/SelectType"
+            android:textSize="23sp"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorList"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/ButtonRS232"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ButtonRS232" />
+
+        <Button
+            android:id="@+id/ButtonRS485"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ButtonRS485" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ButtonRS422"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ButtonRS422" />
+        <Button
+            android:id="@+id/ButtonRS485Trml"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ButtonRS485Trml" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/ButtonRS422Trml"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ButtonRS422Trml" />
+
+        <Button
+            android:id="@+id/ButtonLoopBack"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ButtonLoopBack" />
+    </LinearLayout>
+
 </LinearLayout>
